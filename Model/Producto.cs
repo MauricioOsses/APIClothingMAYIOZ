@@ -12,7 +12,7 @@ namespace APIClothingMAYIOZ.Model
         public int IdMarca { get; set; }
         public int IdTalle { get; set; }
         public int IdGenero { get; set; }
-        public decimal Precio { get; set; }
+        public decimal? Precio { get; set; }
 
         [ForeignKey("IdMarca")]
         public Marca Marca { get; set; }
