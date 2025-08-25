@@ -1,5 +1,5 @@
 using APIClothingMAYIOZ.Data;
-using APIClothingMAYIOZ.DTO_s;
+using APIClothingMAYIOZ.Mappings;
 using APIClothingMAYIOZ.Repositories.GeneroRepository;
 using APIClothingMAYIOZ.Repositories.MarcaRepository;
 using APIClothingMAYIOZ.Repositories.ProductoRepository;
@@ -8,6 +8,7 @@ using APIClothingMAYIOZ.Services.ServiceGenero;
 using APIClothingMAYIOZ.Services.ServiceMarca;
 using APIClothingMAYIOZ.Services.ServiceProducto;
 using APIClothingMAYIOZ.Services.ServiceTalle;
+using APIClothingMAYIOZ.Validations.ProductoValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -33,7 +34,11 @@ builder.Services.AddDbContext<ClothingDbContext>(options =>
 
 builder.Services.AddControllers();
 
+// FluentValidantion
 builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ProductoDtoValidator>());
+
+// AutoMapper
+builder.Services.AddAutoMapper(cfg => cfg.AddProfile<AutoMapperProfile>());
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
